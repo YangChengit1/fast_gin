@@ -58,12 +58,14 @@ func InitLogger() {
 
 type MyHook struct {
 	file    *os.File // 当前打开的日志文件
-	errFile *os.File
-	date    string // 当前日志的时间
-	logPath string // 日志的目录
+	errFile *os.File // 当前的错误日志文件
+	date    string   // 当前日志的时间
+	logPath string   // 日志的目录
 }
 
 func (hook *MyHook) Fire(entry *logrus.Entry) error {
+	// *MyHook使用指针是因为需要修改结构体中的内容，比如hook.date = date
+
 	// 1、写入到文件
 	// 2、按时间分片
 	// 3、错误的日志单独存放

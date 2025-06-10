@@ -1,5 +1,6 @@
 package config
 
 type Config struct {
-	Db DB `yaml:"db"`
+	DB    DB    `yaml:"db"`
+	Redis Redis `yaml:"redis"`
 }

@@ -4,7 +4,7 @@ import (
 	"fast_gin/core"
 	"fast_gin/flags"
 	"fast_gin/global"
-	"fmt"
+	"fast_gin/routers"
 )
 
 func main() {
@@ -18,5 +18,5 @@ func main() {
 	//logrus.Infof("你好")
 	global.Redis = core.InitRedis()
 	flags.Run()
-	fmt.Println("web服务")
+	routers.Run()
 }

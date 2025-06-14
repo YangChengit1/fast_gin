@@ -17,3 +17,6 @@ jwt:
     expiresAt: 8
     issuer: cy
     key: jkliop
+upload:
+    size: 2  # 上传大小限制MB
+    dir: images

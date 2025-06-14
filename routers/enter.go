@@ -12,6 +12,7 @@ func Run() {
 	r.Static("/uploads", "uploads")
 	g := r.Group("api")
 	UserRouter(g)
+	ImageRouter(g)
 	addr := global.Config.System.Addr()
 	if global.Config.System.Mode == "release" {
 		logrus.Infof("后端服务运行在 %s", addr)

@@ -2,15 +2,15 @@ package middleware
 
 import (
 	"fast_gin/utils/jwt"
+	"fast_gin/utils/res"
 	"github.com/gin-gonic/gin"
-	"net/http"
 )
 
 func AuthMiddleware(ctx *gin.Context) {
 	token := ctx.GetHeader("token")
 	_, err := jwt.CheckToken(token)
 	if err != nil {
-		ctx.JSON(http.StatusOK, gin.H{"code": 7, "msg": "认证失败", "data": gin.H{}})
+		res.FailWithMsg("认证失败", ctx)
 		ctx.Abort()
 	}
 	ctx.Next()
@@ -19,11 +19,11 @@ func AdminMiddleware(ctx *gin.Context) {
 	token := ctx.GetHeader("token")
 	claims, err := jwt.CheckToken(token)
 	if err != nil {
-		ctx.JSON(http.StatusOK, gin.H{"code": 7, "msg": "认证失败", "data": gin.H{}})
+		res.FailWithMsg("认证失败", ctx)
 		ctx.Abort()
 	}
 	if claims.RoleID != 1 {
-		ctx.JSON(http.StatusOK, gin.H{"code": 7, "msg": "角色认证失败", "data": gin.H{}})
+		res.FailWithMsg("角色认证失败", ctx)
 		ctx.Abort()
 	}
 	ctx.Next()

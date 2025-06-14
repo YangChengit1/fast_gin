@@ -1,6 +1,8 @@
 package middleware
 
+// 令牌桶限流
 import (
+	"fast_gin/utils/res"
 	"github.com/gin-gonic/gin"
 	"time"
 )
@@ -17,7 +19,7 @@ type Limiter struct {
 	timestamps map[string][]int64 // 存储每个IP的请求时间戳 {IP: [时间戳1, 时间戳2,...]}
 }
 
-// NewLimiter 创建限流器实例
+// NewLimiter 工厂函数创建限流器实例
 // 参数:
 //   - limit: 时间窗口内允许的最大请求数
 //   - duration: 时间窗口长度(如1分钟、1小时等)
@@ -56,10 +58,7 @@ func (l *Limiter) Middleware(c *gin.Context) {
 	// 5. 检查当前请求数是否超过限制
 	if len(l.timestamps[ip]) >= l.limit {
 		// 返回429 Too Many Requests错误
-		c.JSON(429, gin.H{
-			"message": "Too Many Requests",
-			"detail":  "You have exceeded the request limit",
-		})
+		res.FailWithMsg("Too Many Requests", c)
 		c.Abort() // 终止请求处理链
 		return
 	}

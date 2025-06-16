@@ -38,7 +38,7 @@ func BindUriMiddleware[T any](c *gin.Context) {
 	c.Set("request", cr)
 	return
 }
-func GetBind[T any](c *gin.Context) (cr T) {
+func GetBind[T any](c *gin.Context) T {
 	// MustGet确保数据一定存在,不存在直接panic
 	return c.MustGet("request").(T) // 将interface{}类型的值强制转换为泛型类型T
 }

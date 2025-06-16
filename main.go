@@ -5,6 +5,7 @@ import (
 	"fast_gin/flags"
 	"fast_gin/global"
 	"fast_gin/routers"
+	"fast_gin/service/cron_ser"
 )
 
 func main() {
@@ -18,5 +19,6 @@ func main() {
 	//logrus.Infof("你好")
 	global.Redis = core.InitRedis()
 	flags.Run()
+	cron_ser.CronInit()
 	routers.Run()
 }

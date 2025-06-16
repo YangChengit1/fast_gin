@@ -6,6 +6,7 @@ import (
 	"io"
 )
 
+// MD5WithFile 计算hash值
 func MD5WithFile(file io.Reader) string {
 	// 创建一个新的 MD5 哈希计算器
 	m := md5.New()

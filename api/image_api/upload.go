@@ -33,7 +33,7 @@ func (ImageApi) UploadView(c *gin.Context) {
 		return
 	}
 	// 后缀判断
-	ext := strings.ToLower(filepath.Ext(file.Filename)) //拿到后缀
+	ext := strings.ToLower(filepath.Ext(file.Filename)) //拿到后缀并变为小写
 	if !find.InList(whiteList, ext) {
 		res.FailWithMsg("上传文件后缀非法", c)
 		return
@@ -42,7 +42,7 @@ func (ImageApi) UploadView(c *gin.Context) {
 	fp := path.Join("uploads", global.Config.Upload.Dir, file.Filename)
 	for {
 		_, err = os.Stat(fp)
-		if os.IsNotExist(err) {
+		if os.IsNotExist(err) { // 不存在
 			break
 		}
 		// 文件存在

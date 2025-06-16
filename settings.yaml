@@ -20,3 +20,6 @@ jwt:
 upload:
     size: 2  # 上传大小限制MB
     dir: images
+site:
+    login:
+    captcha: true

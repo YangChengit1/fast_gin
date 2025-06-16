@@ -8,5 +8,7 @@ import (
 
 func ImageRouter(g *gin.RouterGroup) {
 	app := api.App.ImageApi
-	g.GET("images/upload", middleware.AuthMiddleware, app.UploadView)
+	g.GET("images/upload",
+		middleware.AuthMiddleware,
+		app.UploadView)
 }

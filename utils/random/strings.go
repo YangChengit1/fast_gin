@@ -1,5 +1,5 @@
 package random
-
+// 随机正常字符串
 import "math/rand"
 
 var letters = []rune("1234567890ahijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")

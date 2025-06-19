@@ -9,7 +9,7 @@ import (
 
 func (UserApi) LogoutView(c *gin.Context) {
 	token := c.GetHeader("token")
-	if global.Redis == nil {
+	if global.Redis == nil { // 未连接redis
 		res.OkWithMsg("注销成功", c)
 		return
 	}

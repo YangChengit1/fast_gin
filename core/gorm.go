@@ -10,6 +10,9 @@ import (
 func InitGorm() (db *gorm.DB) {
 	cfgdb := global.Config.DB
 	var dialector = cfgdb.DSN()
+	if dialector == nil {
+		return
+	}
 	db, err := gorm.Open(dialector, &gorm.Config{
 		DisableForeignKeyConstraintWhenMigrating: true, // 不生成实体外键
 	})

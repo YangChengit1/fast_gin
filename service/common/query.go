@@ -41,7 +41,7 @@ func QueryList[T any](model T, option QueryOption) (list []T, count int64, err e
 	}
 	offset := (option.Page - 1) * option.Limit
 	if option.Order == "" {
-		option.Order = "created_at desc"
+		option.Order = "created_at desc" // 默认
 	}
 	db := global.DB.Where("")
 	if option.Debug {
